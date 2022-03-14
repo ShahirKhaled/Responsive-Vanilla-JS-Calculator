@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
+
+*,*::before,*::after{
+    box-sizing: border-box;
+    color: #eee;
+}
+
+:root{
+    --grid-row: 12vh;
+    --font-size: clamp(32px, 10vw, 42px);
+    font-family: Sofia, cursive;
+    font-weight: bold;
+    font-size: var(--font-size);
+}
+
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    user-select: none;
+    background: rgb(1, 5, 20);
+}
+
+body::before{
+    content: '';
+    height: 30vh;
+    width: 30vh;
+    background: rgb(95, 210, 255);
+    border-radius: 50%;
+    position: absolute;
+    top: -10%;
+    right: 60%;
+    z-index: -1;
+}
+
+.calculator-grid{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(4, calc(25vw - 10px));
+    grid-template-rows: minmax(calc(var(--font-size) * 6), auto) repeat(5, var(--grid-row));
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    grid-gap: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(7px);
+}
+
+@media screen and (min-width: 425px) {
+    :root{
+        --grid-row: 10vh;
+        --font-size: clamp(28px, 5vh, 40px);
+    }
+    body::before{
+        right: 55%;
+    }
+    .calculator-grid{
+        grid-template-columns: repeat(4, minmax(auto, 80px));
+        width: auto;
+        height: auto;
+        border-radius: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+    }
+}
+
+.display-container{
+    grid-column: 1 / -1;
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
+    margin: 0;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.display{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.previous-operand{
+    flex-grow: 1;
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+.current-operand { font-size: 1.25rem; }
+.result { font-size: 0.75rem; }
+
+.bottom-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.backspace{
+    cursor: pointer;
+    height: 1.3rem;
+    width: 1.8rem;
+    position: relative;
+}
+
+.backspace>svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 60%;
+    width: 60%;
+    transform: translate(-50%, -50%);
+}
+
+button{
+    all: unset;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.numbers {background: rgba(255, 255, 255, 0.025);}
+
+button[data-equals]{
+    border-bottom-right-radius: 15px;
+    background-color: rgb(0 183 255 / 70%);
+}
+
+.clear-buttons{
+    position: relative;
+    color: rgb(25,210,255);
+    text-shadow:
+    1px 0 1px rgba(255, 255, 255, 0.6),
+    0 1px 1px rgba(255, 255, 255, 0.6),
+    -1px 0 1px rgba(255, 255, 255, 0.6),
+    0 -1px 1px rgba(255, 255, 255, 0.6);
+}
+
+button:first-of-type {border-top-left-radius: 15px;}
+button:nth-child(5) {border-top-right-radius: 15px;}
+button:nth-last-child(4) {border-bottom-left-radius: 15px;}
+
+button:hover:not(:focus){
+    background-color:rgba(255, 255, 255, 0.1);
+}
+
+button[data-equals]:hover:not(:focus){
+    background-color:rgb(28, 191, 255);
+}
+
+.tooltip{
+    border: 5px solid;
+    border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
+    position: absolute;
+    left: 50%;
+    margin-left: -5px;
+    transform: scale(0) translateX(-50%);
+    z-index: 1;
+    transition: transform 150ms cubic-bezier(0.01, -0.08, 1, 1.68);
+}
+
+.tooltip::before{
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    width: 100px;
+    padding: 5px;
+    text-align: center;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, -5px);
+    font: initial;
+    z-index: inherit;
+}
+
+.all-clear::before {content: 'All-Clear';}
+.clear-entry::before {content: 'Clear-Entry';}
+
+.clear-buttons:hover:not(:focus) .tooltip{
+    transform: scale(1);
+    transition-delay: 700ms;
+}
