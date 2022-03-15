@@ -1,4 +1,4 @@
-import Calculator from './newCalculator.js';
+import Calculator from './Calculator.js';
 
 const numberButtons = document.querySelectorAll('[data-numbers]');
 const operationButtons = document.querySelectorAll('[data-operations]');
