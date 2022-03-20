@@ -53,12 +53,12 @@ export default function(previousOperandTextElement, currentOperandTextElement, r
                 const lastElement = commaSeparated[commaSeparated.length -1].slice(0, 1);
                 const string = JSON.stringify(commaSeparated.slice(0, -1));
                 const stringVersion = string.replace(string.slice(0, 1), '').replace(string.slice(-1), '');
-                return stringVersion/* .replace(/\[/g, '(').replace(/\]/g, ')').replace(/"/g, '') */;
+                return stringVersion.replace(/\[/g, '(').replace(/\]/g, ')').replace(/,"/g, ' ').replace(/",/g, ' ').replace(/"/g, '');
             } else {
                 const lastEelement = commaSeparated[commaSeparated.length -1].slice(0, 1);
-                const string = JSON.stringify(commaSeparated/* .flat().slice(0, -1) */);
+                const string = JSON.stringify(commaSeparated);
                 const stringVersion = string.replace(string.slice(0, 1), '').replace(string.slice(-1), '');
-                return stringVersion;
+                return stringVersion.replace(/\[/g, '(').replace(/\]/g, ')').replace(/,"/g, ' ').replace(/",/g, ' ').replace(/"/g, '');
             }
         }
 

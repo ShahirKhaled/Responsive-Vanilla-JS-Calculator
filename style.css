@@ -74,6 +74,8 @@ body::before{
     flex-direction: column;
 }
 
+.span-two { grid-column: span 2 }
+
 h1{
     margin: 0;
     font-size: 0.75rem;
@@ -144,7 +146,7 @@ button[data-equals]{
 }
 
 button:first-of-type {border-top-left-radius: 15px;}
-button:nth-child(5) {border-top-right-radius: 15px;}
+button:nth-child(4) {border-top-right-radius: 15px;}
 button:nth-last-child(4) {border-bottom-left-radius: 15px;}
 
 button:hover:not(:focus){

@@ -5,7 +5,6 @@ const operationButtons = document.querySelectorAll('[data-operations]');
 const plusMinusButton = document.querySelector('[data-plus-minus]');
 const parenthesis = document.querySelector('[data-parenthesis]');
 const equalButton = document.querySelector('[data-equals]');
-const clearEntryButton = document.querySelector('[data-clear-entry]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const backspaceElement = document.querySelector('[data-backspace]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
@@ -48,11 +47,6 @@ equalButton.addEventListener('click', () => {
     calculator.entry = [];
     calculator.currentOperand = '';
     calculator.operation = undefined;
-    calculator.updateDisplay();
-});
-
-clearEntryButton.addEventListener('click', () => {
-    calculator.clearEntry();
     calculator.updateDisplay();
 });
 
