@@ -22,7 +22,10 @@ export default function(previousOperandTextElement, currentOperandTextElement, r
 
     this.delete = function() {
         this.currentOperand = this.currentOperand.trim().slice(0, -1).trim();
-        if (this.previousOperand && !this.currentOperand) this.clearEntry();
+        if (this.previousOperand && !this.currentOperand) {
+            this.currentOperand = this.previousOperand.slice(0, -3);
+            this.previousOperand = '';
+        }
     }
 
     this.getCommaSeparated = number => {
@@ -110,7 +113,7 @@ export default function(previousOperandTextElement, currentOperandTextElement, r
     
     this.appendNumber = function(number) {
         if (number === '.' && this.currentOperand.includes('.')) return;
-        if (number === '.' && !/[0-9]/.test(this.currentOperand.slice(-2, -1))) this.currentOperand += '0' + number;
+        if (number === '.' && !/[0-9]/.test(this.currentOperand.slice(-1))) this.currentOperand += '0' + number;
         else this.currentOperand += number;
         this.parseBrackets();
         this.boolean = true;
