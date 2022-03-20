@@ -62,8 +62,8 @@ parenthesis.addEventListener('click', () => {
 
 console.log(
     `%cHi there!
-%cSince you have came here, I assume that you are a developer.
-If you want to get in touch, I would love to connect with you
+%cSince you are here in the console, I assume you are a developer too.
+If you want to get in touch, I would love to connect with you.
 %cGitHub: %chttps://www.github.com/Shahir-Khaled`,
     'font-size: 2em; color: rgb(101, 197, 255); width: 100%; text-align: center;',
     '',
